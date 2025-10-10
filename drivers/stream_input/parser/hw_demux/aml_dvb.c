@@ -2386,7 +2386,8 @@ static int aml_dvb_probe(struct platform_device *pdev)
 	tsdemux_set_ops(NULL);
 #endif
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 	ret = dvb_extern_register_frontend(&advb->dvb_adapter);
 	if (ret) {
 		pr_error("aml register dvb frontend failed\n");
@@ -2423,7 +2424,8 @@ static int aml_dvb_remove(struct platform_device *pdev)
 
 	pr_inf("[dmx_kpi] %s Enter.\n", __func__);
 
-#if (defined CONFIG_AMLOGIC_DVB_EXTERN)
+#if (defined CONFIG_AMLOGIC_DVB_EXTERN ||\
+		defined CONFIG_AMLOGIC_DVB_EXTERN_MODULE)
 	dvb_extern_unregister_frontend();
 #endif
 
